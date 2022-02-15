@@ -62,14 +62,16 @@ TypeScript use angle brackets `<T>` for generics. This is very similar to langua
 
 In the TypeScript, we're able to infer simple returns value and variable declarations, but if you want to have dynamic arguments like on this example:
 
+**TS**
 ```ts
 const toDoubleTuple = <T>(anything: T): [T, T] => [anything, anything]
 ```
-
+  
 you have to define, that argument `anything` is of some generic type `T` and the function takes a type of `anything`, and returns a tuple of `[anything, anything]`
 
 As you may suggest, F# is so smart that he can even infer generic types of our function.
 
+**F#**
 ```fs
 let toDoubleTuple anything = anything, anything
 ```
@@ -151,6 +153,7 @@ F# structural-based data object types are awesome but here the TypeScript has mu
 
 In JavaScript we have a few nullable values: `null`, `undefined`, `0`, `NaN`, `""`. It makes us hard to handle the JavaScript runtime properly. Thanks to TypeScript we can check the types more strictly.
 
+**TS**
 ```ts
 let pipePrint = <T>(data: T | undefined | null) => {
   if (data === undefined || data === null || isNan(data)) {
@@ -163,6 +166,8 @@ let pipePrint = <T>(data: T | undefined | null) => {
 
 F# decided not to implement those nullable values and focused to force you to strictly handle edge-cases. So in F# core there is defined union type called [`Option`](https://fsharpforfunandprofit.com/posts/the-option-type/)
 It's defined as:
+
+**FS**
 ```fs
 type Option<'a> =       // use a generic definition
    | Some of 'a           // valid value
@@ -171,6 +176,7 @@ type Option<'a> =       // use a generic definition
 
 If we wrap some value in that `Option` type, we're able to check if the value exists or if the value is empty.
 
+**FS**
 ```fs
 let pipePrint data = 
    match data with
@@ -197,6 +203,7 @@ Pattern matching in JavaScript/TypeScript is bad, not flexible, and bad again. S
 
 I put here one of many examples of the powerfulness of pattern-matching in F#.
 
+**FS**
 ```fs
 let vectorLength vec =
     match vec with
