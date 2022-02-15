@@ -5,7 +5,7 @@ Both of them are multiplatform, high-level, and statically-typed so we're able t
 
 ## Comparison categories
 
-I would like to focus on a few concepts of a language that we will compare in this article. Those categories are:
+I would like to focus on a few concepts of programming languages that we will compare. Those categories are:
 
 1. [Data-type inferring](#1-data-type-inferring)
 2. [Generic inferring](#2-generic-inferring)
@@ -14,36 +14,39 @@ I would like to focus on a few concepts of a language that we will compare in th
 5. [Pattern matching](#5-pattern-matching)
 6. [Modules import system](#6-modules-import-system)
 7. [Runtime optimization](#7-runtime-optimization)
-8. [Not compiled to the Microsoft ecosystem](#8-not-compiled-to-the-microsoft-ecosystem)
+8. [Not connected to the mega-corporat](#8-not-connected-to-the-mega-corporat)
 
 
 
 
 ## 1. Data-type inferring
 
-F# is a strongly-typed language that implemented an algorithm called `Hindley–Milner`. That algorithm analyzes your codebase and infers as much as possible static types.
+F# is a strongly-typed language that implemented an algorithm called `Hindley–Milner`. That algorithm analyzes your codebase and infers as much static types as possible.
 
 If we want to do a function to sum 2 numbers in TypeScript, we have to define data types for both arguments, and the TypeScript compiler will infer the Return type
 
 **TS**
 ```ts
-// this is function whitch takes 2 arguments: `a` & `b`, function sum those numbers and returns value
+// this is function which takes 2 arguments: `a`, `b`, function sum those numbers and returns value
+// here we have to define data type of both arguments
 let sum = (a: number, b: number) => a + b
 ```
 ![fs obj exapmle](./imgs/ts_sum.png)
 
-On the other side, F# analyse the source code and found that operator `+` can be called on two integers so it infers data types of arguments. As you can see F# code looks like another scripting language without static types but because of the terrific inferring algorithm of F# compiler it's a type-safe strongly typed codebase.
+On the other side, F# analyse the source code and found that operator `+` can be called on two integers so it infers data types of arguments. 
 
 **F#**
 ```fs
-// this is function whitch takes 2 arguments: `a` & `b`, function sum those numbers and returns value
+// this is function which takes 2 arguments: `a`, `b`, function sum those numbers and returns value
 let sum a b = a + b
 ```
 ![fs obj exapmle](./imgs/fs_sum.png)
 > F# is running on `.net` ecosystem so it makes differences between `float` and `int`, TypeScript does not
 
+As you can see F# code looks like another scripting language without static types but because of the terrific F# compiler it's a type-safe and strongly typed snippet.
+
 Thanks to the `Hindley-Milner` algorithm in the F# compiler, F# is the winner.
-[Unfortunatelly it looks that TypeScript has no plan to implement this kind of inference](https://github.com/microsoft/TypeScript/issues/11218)
+[Unfortunatelly it looks that TypeScript has no plan to implement this kind of type inference.](https://github.com/microsoft/TypeScript/issues/11218)
 
 **🏆 F# won**
 
@@ -57,7 +60,7 @@ Thanks to the `Hindley-Milner` algorithm in the F# compiler, F# is the winner.
 
 TypeScript use angle brackets `<T>` for generics. This is very similar to languages like `C++`, `Java` or `C#`. F# use just simple apostrophe `'T` for it.
 
-In the TypeScript, we're able to infer simple returns value and variable declarations, but if you want to have dynamic arguments like on the example:
+In the TypeScript, we're able to infer simple returns value and variable declarations, but if you want to have dynamic arguments like on this example:
 
 ```ts
 const toDoubleTuple = <T>(anything: T): [T, T] => [anything, anything]
@@ -65,7 +68,7 @@ const toDoubleTuple = <T>(anything: T): [T, T] => [anything, anything]
 
 you have to define, that argument `anything` is of some generic type `T` and the function takes a type of `anything`, and returns a tuple of `[anything, anything]`
 
-As you may suggest, F# is so smart that he can even infer generics of our function.
+As you may suggest, F# is so smart that he can even infer generic types of our function.
 
 ```fs
 let toDoubleTuple anything = anything, anything
@@ -73,7 +76,7 @@ let toDoubleTuple anything = anything, anything
 
 ![fs head](./imgs/fs_toDoubleTuple.png)
 
-Again, F# analyze the source code and found that if a function takes `anything` type and returns a tuple of `anything, anything`. F# compiler infers that argument is of Generic type `'a`. This code looks like a dynamic scripting language like Python but it has a powerful 100% type-safe runtime. F# compiler is a piece of art.
+Again, F# analyze the source code and found that if a function takes `anything` of type `'a` and returns a tuple of `anything, anything` of type `'a * 'a`. F# compiler infers that argument is of Generic type `'a`. This code looks like a dynamic scripting language similar to the Python but it has a powerful 100% type-safe runtime.
 
 **🏆 F# won**
 
@@ -132,11 +135,11 @@ type User = typeof kuba
 
 ![ts obj exapmle](./imgs/ts_obj.png)
 
-Thanks to that TypeScript approach, we may use TypeScript generics like `Omit`, `Pick`, and so on.
+Thanks to that TypeScript approach, we may use more advanced generics like `Omit<...>`, `Pick<...>`, `keyof` and so on.
 
-F# structural-based data object types are awesome but here the TypeScript has much nicer, minimalist, and more powerful tools to define data types from raw data.
+F# structural-based data object types are awesome but here the TypeScript has much more powerful, nicer and minimalist tools to define dynamic data object types.
 
-**🏆 Typescript won**
+**🏆 TypeScript won**
 
 
 
@@ -146,8 +149,7 @@ F# structural-based data object types are awesome but here the TypeScript has mu
 
 ## 4. Null pointer exceptions
 
-In JavaScript we have a few nullable values: `null`, `undefined`, `0`, `NaN`, `""`. It makes us hard to handle the runtime properly.
-Thanks to TypeScript we can check the types more strictly.
+In JavaScript we have a few nullable values: `null`, `undefined`, `0`, `NaN`, `""`. It makes us hard to handle the JavaScript runtime properly. Thanks to TypeScript we can check the types more strictly.
 
 ```ts
 let pipePrint = <T>(data: T | undefined | null) => {
@@ -176,7 +178,7 @@ let pipePrint data =
      | None -> printf "no value provided"
 ```
 
-Thanks to that F# compiler forces us to handle all non-valid potential null pointer exceptions errors which are good. But in TypeScript, we have the same value if we correctly type 100% of our codebase. So in this category is a draw and there is 🏆 no winner.
+Thanks to that F# compiler forces us to handle all non-valid potential null pointer exceptions errors which are good. But in TypeScript, we have the same value if we correctly type 100% of our codebase. So in this category is a draw and there is no winner.
 
 **🏆 no winner**
 
@@ -222,7 +224,7 @@ To be honest I don't like namespaces in programming languages like C#, Java, PHP
 
 ES6 modules enable us to have cyclic dependencies where names of files are part of our application architecture. In a language like C# and F# we have to create a file plus add a module or namespace declaration. I prefer a more minimalistic way for defining modules so I prefer the ES6 way more.
 
-**🏆 Typescript won**
+**🏆 TypeScript won**
 
 
 
@@ -238,7 +240,7 @@ TypeScript is a highly dynamic language so if we compile our TypeScript code int
 
 On the other hand thanks to the fact that TypeScript is a tool for better developer experience we're able to use expressions like `as any`, `: any`, `@ts-expect-error`, `@ts-ignore` and not to be too strict.
 
-It means that both approaches have cons and props there is 🏆 no winner in this category.
+It means that both approaches have cons and props so there is no winner.
 
 **🏆 no winner**
 
@@ -248,11 +250,14 @@ It means that both approaches have cons and props there is 🏆 no winner in thi
 
 
 
-## 8. Not compiled to the Microsoft ecosystem
+## 8. Not connected to mega-corporate
 
-As you may know. F# is developed by Microsoft and it runs on the .net platform created by Microsoft. Typescript is also created by Microsoft but the final output is pure vanilla JavaScript which is not owned by any large mega-corporate. Thanks to that it gave us as developers the option to not be locked in to the ecosystem of some mega-corporate and feel more free and independent. Maybe this point could be stupid for you but I believe that it's better to develop in a language that is not so directly connected to anyone.
+As you may know. F# is developed by Microsoft and it runs on the .net platform created by Microsoft as well. TypeScript is also created by Microsoft but the final output is pure vanilla JavaScript which is not owned by any large mega-corporate. Thanks to that it gave us as (developers) the option to not be locked in to the one ecosystem of some mega-corporate and we are able to feel more free and independent. 
 
-**🏆 Typescript won**
+Maybe this point could be stupid for you but I believe that it's better to write code in a language that is not so directly connected to anyone and there is more democracy.
+
+
+**🏆 TypeScript won**
 
 
 
@@ -264,23 +269,26 @@ As you may know. F# is developed by Microsoft and it runs on the .net platform c
 
 So, Let's check the results of categories:
 
-|                                             | F# | TS |
-| ------------------------------------------- | -- | -- |
-| 1. Data-type inferring                      | 🏆 |    |
-| 2. Generic inferring                        | 🏆 |    |
-| 3. Dynamic object types                     |    | 🏆 |
-| 4. Null pointer exceptions                  | -- | -- |
-| 5. Pattern matching                         | 🏆 |    |
-| 6. Modules import system                    |    | 🏆 |
-| 7. Runtime optimization                     | -- | -- |
-| 8. Not compiled to the Microsoft ecosystem  |    | 🏆 |
+|                                         | F# | TS |
+| --------------------------------------- | -- | -- |
+| 1. Data-type inferring                  | 🏆 |    |
+| 2. Generic inferring                    | 🏆 |    |
+| 3. Dynamic object types                 |    | 🏆 |
+| 4. Null pointer exceptions              | -- | -- |
+| 5. Pattern matching                     | 🏆 |    |
+| 6. Modules import system                |    | 🏆 |
+| 7. Runtime optimization                 | -- | -- |
+| 8. Not connected to the mega-corporate  |    | 🏆 |
 
-So as you you can see, it's hard to decide which language I like and prefer more. 
-In conclusion, my dreamed language will be F# with Javascript ES6 module system and object data inferring via `typeof` designed by ECMA standard.
+So as you you can see, it's hard to decide which language I like more. 
+In conclusion, my dreamed language will be F# with Javascript ES6 module system and object data inferring via `typeof`.
 
-So at the end of this article, it is worth mentioning that there is an awesome compiler from F# to the JavaScript called [fable.io](https://fable.io/)
 
-here you can see demo example where `fable.io` transpiled one of our example F# into the JavaScript.
+## is there some solution?
+
+So at the end of this article, it is worth mentioning that there is an awesome compiler [fable.io](https://fable.io/) that brings F# to the JavaScript ecosystem. 
+
+On the next screenshot you can see demo example where `fable.io` transpile one of our example from F# into the JavaScript.
 
 ![fable example](./imgs/fable_example.png)
 
