@@ -14,9 +14,10 @@ I would like to focus on a few concepts of programming languages that we will co
 5. [Pattern matching](#5-pattern-matching)
 6. [Modules import system](#6-modules-import-system)
 7. [Runtime optimization](#7-runtime-optimization)
-8. [Not connected to the mega-corporat](#8-not-connected-to-the-mega-corporat)
+8. [Not owned by mega-corporate](#8-not-owned-by-megacorporate)
 
-
+ 
+[TLDR: goto final conclusion](#final-conclusion)
 
 
 ## 1. Data-type inferring
@@ -31,16 +32,16 @@ If we want to do a function to sum 2 numbers in TypeScript, we have to define da
 // here we have to define data type of both arguments
 let sum = (a: number, b: number) => a + b
 ```
-![fs obj exapmle](./imgs/ts_sum.png)
+![fs obj exapmle](https://raw.githubusercontent.com/Svehla/ts_vs_fs/main/imgs/ts_sum.png)
 
 On the other side, F# analyse the source code and found that operator `+` can be called on two integers so it infers data types of arguments. 
 
 **F#**
-```fs
+```fsharp
 // this is function which takes 2 arguments: `a`, `b`, function sum those numbers and returns value
 let sum a b = a + b
 ```
-![fs obj exapmle](./imgs/fs_sum.png)
+![fs obj exapmle](https://raw.githubusercontent.com/Svehla/ts_vs_fs/main/imgs/fs_sum.png)
 > F# is running on `.net` ecosystem so it makes differences between `float` and `int`, TypeScript does not
 
 As you can see F# code looks like another scripting language without static types but because of the terrific F# compiler it's a type-safe and strongly typed snippet.
@@ -72,11 +73,11 @@ you have to define, that argument `anything` is of some generic type `T` and the
 As you may suggest, F# is so smart that he can even infer generic types of our function.
 
 **F#**
-```fs
+```fsharp
 let toDoubleTuple anything = anything, anything
 ```
 
-![fs head](./imgs/fs_toDoubleTuple.png)
+![fs head](https://raw.githubusercontent.com/Svehla/ts_vs_fs/main/imgs/fs_toDoubleTuple.png)
 
 Again, F# analyze the source code and found that if a function takes `anything` of type `'a` and returns a tuple of `anything, anything` of type `'a * 'a`. F# compiler infers that argument is of Generic type `'a`. This code looks like a dynamic scripting language similar to the Python but it has a powerful 100% type-safe runtime.
 
@@ -93,7 +94,7 @@ Again, F# analyze the source code and found that if a function takes `anything` 
 Now, let's compare how to create data-type and structural data objects. Let's start with F#.
 
 **F#**
-```fs
+```fsharp
 type User = {
   id: string
   name: string
@@ -105,7 +106,7 @@ let kuba = {
 }
 ```
 
-![fs obj exapmle](./imgs/fs_obj.png)
+![fs obj exapmle](https://raw.githubusercontent.com/Svehla/ts_vs_fs/main/imgs/fs_obj.png)
 
 As you can see F# has `structural based data object types`. It means that F# compiler founds that there exists an object type with attribute `id: string` and `name: string` and it automatically infers data-type of it.
 
@@ -135,7 +136,7 @@ let kuba = {
 type User = typeof kuba
 ```
 
-![ts obj exapmle](./imgs/ts_obj.png)
+![ts obj exapmle](https://raw.githubusercontent.com/Svehla/ts_vs_fs/main/imgs/ts_obj.png)
 
 Thanks to that TypeScript approach, we may use more advanced generics like `Omit<...>`, `Pick<...>`, `keyof` and so on.
 
@@ -162,13 +163,13 @@ let pipePrint = <T>(data: T | undefined | null) => {
     console.log(data)
   }
 }
-````
+```
 
 F# decided not to implement those nullable values and focused to force you to strictly handle edge-cases. So in F# core there is defined union type called [`Option`](https://fsharpforfunandprofit.com/posts/the-option-type/)
 It's defined as:
 
-**FS**
-```fs
+**F#**
+```fsharp
 type Option<'a> =       // use a generic definition
    | Some of 'a           // valid value
    | None                 // missing value
@@ -176,8 +177,9 @@ type Option<'a> =       // use a generic definition
 
 If we wrap some value in that `Option` type, we're able to check if the value exists or if the value is empty.
 
-**FS**
-```fs
+**F#**
+
+```fsharp
 let pipePrint data = 
    match data with
      | Some x -> printf x
@@ -203,8 +205,8 @@ Pattern matching in JavaScript/TypeScript is bad, not flexible, and bad again. S
 
 I put here one of many examples of the powerfulness of pattern-matching in F#.
 
-**FS**
-```fs
+**F#**
+```fsharp
 let vectorLength vec =
     match vec with
     | [| var1 |] -> var1
@@ -257,7 +259,7 @@ It means that both approaches have cons and props so there is no winner.
 
 
 
-## 8. Not connected to mega-corporate
+## 8. Not owned by mega-corporate
 
 As you may know. F# is developed by Microsoft and it runs on the .net platform created by Microsoft as well. TypeScript is also created by Microsoft but the final output is pure vanilla JavaScript which is not owned by any large mega-corporate. Thanks to that it gave us as (developers) the option to not be locked in to the one ecosystem of some mega-corporate and we are able to feel more free and independent. 
 
@@ -272,7 +274,7 @@ Maybe this point could be stupid for you but I believe that it's better to write
 
 
 
-## Final sum
+## Final conclusion
 
 So, Let's check the results of categories:
 
@@ -285,19 +287,19 @@ So, Let's check the results of categories:
 | 5. Pattern matching                     | 🏆 |    |
 | 6. Modules import system                |    | 🏆 |
 | 7. Runtime optimization                 | -- | -- |
-| 8. Not connected to the mega-corporate  |    | 🏆 |
+| 8. Not owned by mega-corporate          |    | 🏆 |
 
 So as you you can see, it's hard to decide which language I like more. 
 In conclusion, my dreamed language will be F# with Javascript ES6 module system and object data inferring via `typeof`.
 
 
-## is there some solution?
+## Is there some solution?
 
 So at the end of this article, it is worth mentioning that there is an awesome compiler [fable.io](https://fable.io/) that brings F# to the JavaScript ecosystem. 
 
 On the next screenshot you can see demo example where `fable.io` transpile one of our example from F# into the JavaScript.
 
-![fable example](./imgs/fable_example.png)
+![fable example](https://raw.githubusercontent.com/Svehla/ts_vs_fs/main/imgs/fable_example.png)
 
 
 
