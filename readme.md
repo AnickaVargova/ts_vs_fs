@@ -1,4 +1,4 @@
-# is better TypeScript or F#?
+# TypeScript or F#? WHICH IS BETTER?!
 
 Today I'll try to compare two different programming languages, **F#** and **TypeScript**.
 Both of them are multiplatform, high-level, and statically-typed so we're able to use them to write any kind of type-safe application like web-servers, native-client-apps, web-applications or we can use them for daily scripting instead of tools like a shell.
@@ -32,7 +32,7 @@ let sum = (a: number, b: number) => a + b
 ```
 ![fs obj exapmle](./imgs/ts_sum.png)
 
-On the other side, F# analyse the source code and found that operator `+` can be called on two integers so it infers data types of arguments. As you can see F# code looks like another scripting language without static types but because of terrific inferring algorithm of F# compiler it's type-safe strongly typed codebase.
+On the other side, F# analyse the source code and found that operator `+` can be called on two integers so it infers data types of arguments. As you can see F# code looks like another scripting language without static types but because of the terrific inferring algorithm of F# compiler it's a type-safe strongly typed codebase.
 
 **F#**
 ```fs
@@ -42,7 +42,7 @@ let sum a b = a + b
 ![fs obj exapmle](./imgs/fs_sum.png)
 > F# is running on `.net` ecosystem so it makes differences between `float` and `int`, TypeScript does not
 
-**conclusion: F# won 🏆**
+**F# won 🏆**
 
 
 
@@ -72,7 +72,7 @@ let toDoubleTuple anything = anything, anything
 
 Again, F# analyze the source code and found that if a function takes `anything` type and returns a tuple of `anything, anything`. F# compiler infers that argument is of Generic type `'a`. This code looks like a dynamic scripting language like Python but it has a powerful 100% type-safe runtime. F# compiler is a piece of art.
 
-**conclusion: F# won 🏆**
+**F# won 🏆**
 
 
 
@@ -133,7 +133,7 @@ Thanks to that TypeScript approach, we may use TypeScript generics like `Omit`, 
 
 F# structural-based data object types are awesome but here the TypeScript has much nicer, minimalist, and more powerful tools to define data types from raw data.
 
-**conclusion: TypeScript won 🏆**
+**TypeScript won 🏆**
 
 
 
@@ -175,7 +175,7 @@ let pipePrint data =
 
 Thanks to that F# compiler forces us to handle all non-valid potential null pointer exceptions errors which are good. But in TypeScript, we have the same value if we correctly type 100% of our codebase. So in this category is a draw and there is no winner.
 
-**conclusion: no winner**
+**no winner**
 
 
 
@@ -201,13 +201,31 @@ let vectorLength vec =
     | _ -> failwith (sprintf "vectorLength called with an unsupported array size of %d." (vec.Length))
 ```
 
-**conclusion: F# won 🏆**
+**F# won 🏆**
 
-### Modules import system
 
-TODO: add texts...
 
-**conclusion: Typescript won 🏆**
+
+
+
+
+## Modules import system
+
+F# has [linear module system](https://fsharpforfunandprofit.com/posts/cyclic-dependencies/) with [namespaces](https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/namespaces) and [modules](https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/modules).
+
+TypeScript has a few module systems like commonjs, ES6, and so on. Today we're gonna talk about [ES6 imports](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import).
+
+To be honest I don't like namespaces in programming languages like C#, Java, PHP, and so on. I prefer a module system where each file is its namespace and `import` & `export` are the only sign if the value is local, or if the value can be imported into a different module.
+
+ES6 modules enable us to have cyclic dependencies where names of files are part of our application architecture. In a language like C# and F# we have to create a file plus add a module or namespace declaration. I prefer a more minimalistic way for defining modules so I prefer the ES6 way more.
+
+**Typescript won 🏆**
+
+
+
+
+
+
 
 ## 7. Runtime optimization
 
@@ -219,7 +237,7 @@ On the other hand thanks to the fact that TypeScript is a tool for better develo
 
 It means that both approaches have cons and props there is no winner in this category.
 
-**conclusion: no winner**
+**no winner**
 
 
 
@@ -229,9 +247,9 @@ It means that both approaches have cons and props there is no winner in this cat
 
 ## 8. Not compiled to the Microsoft ecosystem
 
-As you may know. F# is developed by Microsoft and it runs on the .net platform created by Microsoft. Typescript is also created by Microsoft but the final output is pure vanilla JavaScript which is not owned by any large mega corporate. Thanks to that it gave us as developers the option to not be locked into the ecosystem of some mega-corporate and feel more free and independent. Maybe this point could be stupid for you but I believe that it's better to develop in a language that is not so directly connected to anyone.
+As you may know. F# is developed by Microsoft and it runs on the .net platform created by Microsoft. Typescript is also created by Microsoft but the final output is pure vanilla JavaScript which is not owned by any large mega-corporate. Thanks to that it gave us as developers the option to not be locked in to the ecosystem of some mega-corporate and feel more free and independent. Maybe this point could be stupid for you but I believe that it's better to develop in a language that is not so directly connected to anyone.
 
-**conclusion: Typescript won 🏆**
+**Typescript won 🏆**
 
 
 
