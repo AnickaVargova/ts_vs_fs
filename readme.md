@@ -1,3 +1,4 @@
+
 # TypeScript or F#?!? WHICH IS BETTER?!
 
 Today I'll try to compare two different programming languages, **F#** and **TypeScript**.
@@ -106,7 +107,7 @@ let kuba = {
 }
 ```
 
-![fs obj exapmle](https://raw.githubusercontent.com/Svehla/ts_vs_fs/main/imgs/fs_obj.png)
+![fs obj example](https://raw.githubusercontent.com/Svehla/ts_vs_fs/main/imgs/fs_obj.png)
 
 As you can see F# has `structural based data object types`. It means that F# compiler founds that there exists an object type with attribute `id: string` and `name: string` and it automatically infers data-type of it.
 
@@ -231,7 +232,30 @@ TypeScript has a few module systems like commonjs, ES6, and so on. Today we're g
 
 To be honest I don't like namespaces in programming languages like C#, Java, PHP, and so on. I prefer a module system where each file is its namespace and `import` & `export` are the only sign if the value is local, or if the value can be imported into a different module.
 
+**FS**
+```fsharp
+// file-a.fs
+module FileA
+let sum a b = a + b
+
+// file-b.ts
+module FileB
+open FileA
+
+```
+
 ES6 modules enable us to have cyclic dependencies where names of files are part of our application architecture. In a language like C# and F# we have to create a file plus add a module or namespace declaration. I prefer a more minimalistic way for defining modules so I prefer the ES6 way more.
+
+**TS**
+```ts
+// file-a.ts
+export const sum = (a, b) => a + b
+
+
+// file-b.ts
+import { sum } from './file-a.ts'
+```
+
 
 **🏆 TypeScript won**
 
